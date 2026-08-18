@@ -12,9 +12,100 @@
 <meta property="og:image" content="https://zakbash.com/img/zak-live.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0b0c">
+<link rel="canonical" href="https://zakbash.com/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Structured data. The point of this is entity resolution: sameAs ties this
+     page to his Discogs, MusicBrainz and Instagram identities so search engines
+     can recognise "Zak Glosserman" as one person rather than three unrelated
+     pages. Both bands are separate nodes with their own sameAs for the same
+     reason. Membership dates live in the descriptions — schema.org memberOf has
+     no tense, so the prose is what distinguishes current from former. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://zakbash.com/#zak",
+      "name": "Zak Glosserman",
+      "jobTitle": "Drummer",
+      "description": "American drummer. Co-founded the Los Angeles punk band Orange in 2002 and drummed for them until 2014, signed to Tim Armstrong's Hellcat Records. Now on drums in the Sacramento hardcore punk band Cockring.",
+      "url": "https://zakbash.com/",
+      "image": "https://zakbash.com/img/zak-live.jpg",
+      "mainEntityOfPage": "https://zakbash.com/",
+      "knowsAbout": ["Drums", "Hardcore punk", "Pop punk", "Punk rock"],
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Sacramento, California",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sacramento",
+          "addressRegion": "CA",
+          "addressCountry": "US"
+        }
+      },
+      "sameAs": [
+        "https://www.instagram.com/zakglosserman/",
+        "https://www.discogs.com/artist/469706-Zak-Glosserman",
+        "https://musicbrainz.org/artist/1941b0f8-e592-4932-b31d-413c8d336919"
+      ],
+      "memberOf": [
+        { "@id": "https://zakbash.com/#cockring" },
+        { "@id": "https://zakbash.com/#orange" }
+      ]
+    },
+    {
+      "@type": "MusicGroup",
+      "@id": "https://zakbash.com/#cockring",
+      "name": "Cockring",
+      "genre": ["Hardcore punk", "Punk"],
+      "description": "Sacramento, California hardcore punk band. Zak Glosserman plays drums.",
+      "foundingLocation": { "@type": "Place", "name": "Sacramento, California" },
+      "sameAs": [
+        "https://cockring.bandcamp.com",
+        "https://www.instagram.com/cockringhc/"
+      ],
+      "album": [
+        { "@type": "MusicAlbum", "name": "Humiliation Ritual", "datePublished": "2026-01-13", "albumProductionType": "https://schema.org/StudioAlbum" },
+        { "@type": "MusicAlbum", "name": "Altar Call", "datePublished": "2024-10-11", "albumProductionType": "https://schema.org/StudioAlbum" }
+      ]
+    },
+    {
+      "@type": "MusicGroup",
+      "@id": "https://zakbash.com/#orange",
+      "name": "Orange",
+      "genre": ["Punk rock", "Pop punk"],
+      "description": "Los Angeles punk band signed to Hellcat Records. Zak Glosserman drummed for the band from 2002 to 2014.",
+      "foundingDate": "2002",
+      "foundingLocation": { "@type": "Place", "name": "Los Angeles, California" },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Orange_(band)",
+        "https://www.discogs.com/artist/469720-Orange-14",
+        "https://orangeband.bandcamp.com"
+      ],
+      "album": [
+        { "@type": "MusicAlbum", "name": "Welcome to the World of...Orange", "datePublished": "2005" },
+        { "@type": "MusicAlbum", "name": "Escape from L.A.", "datePublished": "2007" },
+        { "@type": "MusicAlbum", "name": "Phoenix", "datePublished": "2009-09-10" },
+        { "@type": "MusicAlbum", "name": "Dead Sexy", "datePublished": "2011" }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://zakbash.com/#website",
+      "url": "https://zakbash.com/",
+      "name": "Zak Glosserman",
+      "inLanguage": "en",
+      "about": { "@id": "https://zakbash.com/#zak" }
+    }
+  ]
+}
+</script>
 <style>
 :root{
   --ink:#0b0b0c;
@@ -410,7 +501,10 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
 
 <header class="hero" id="top">
   <span class="eyebrow">Drummer · Sacramento, California · Since 2002</span>
-  <h1><span class="l1">ZAK</span><span class="l2">GLOSSERMAN</span></h1>
+  <!-- Real casing + a real space between the spans: they are display:block so the
+       whitespace does not render, but without it h1.textContent reads
+       "ZAKGLOSSERMAN" as a single token to anything parsing the markup. -->
+  <h1><span class="l1">Zak</span> <span class="l2">Glosserman</span></h1>
 
   <figure class="hero-shot">
     <img src="img/zak-live.jpg" alt="Zak Glosserman playing drums, sticks mid-air">

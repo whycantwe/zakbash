@@ -1,0 +1,10 @@
+# https://zakbash.com/
+User-agent: *
+Allow: /
+
+# /funeral/ is an archived one-off event page kept only for old links.
+# It is NOT disallowed here on purpose: it carries a noindex meta tag, and a
+# crawler has to be able to fetch the page to see that tag. Blocking it here
+# would hide the noindex and the URL could still get indexed from inbound links.
+
+Sitemap: https://zakbash.com/sitemap.xml
