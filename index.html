@@ -72,6 +72,12 @@ nav{
   border:1px solid transparent;
 }
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--ink);background:var(--bone);outline:none}
+@media(max-width:520px){
+  /* four links + wordmark wrap to two rows and double the sticky bar height */
+  nav{padding:0 14px;gap:8px}
+  .brand{font-size:13px}
+  .nav-links a{font-size:10px;letter-spacing:.06em;padding:6px 5px}
+}
 
 /* ── BEAT GRID (signature motif) ── */
 .beat{display:flex;gap:3px;align-items:stretch;height:var(--h,26px);width:100%}
@@ -154,19 +160,59 @@ h2 .thin{color:var(--bone-dim)}
 .lede strong{color:var(--accent,var(--red));font-weight:400}
 
 /* ── FOOTAGE (Instagram embeds) ──
-   Instagram's embed chrome is fixed-height and does not scale with a fluid
-   column, so the columns are a fixed 320px and the iframe height is pinned
-   to the card's measured natural height. Fluid columns clip the footer. */
-#footage{--accent:var(--red);--beat-hit:var(--red)}
+   Instagram's embed iframe ships with its own white chrome: an avatar/
+   "View profile" header on top and a likes/comments footer below. It is
+   cross-origin, so it cannot be restyled — only clipped. The wrapper below
+   is a window onto the media region alone: it is exactly --ig-media tall
+   with overflow hidden, and the iframe is pulled up by --ig-head so the
+   header sits above the window and the footer falls below it.
+
+   THESE NUMBERS ARE MEASURED, NOT GUESSED, and they are the only fragile
+   part of this page — if Instagram changes its embed layout the crop will
+   drift. Symptom: a sliver of white at the top or bottom of a clip. Fix:
+   re-measure and change these values only. Nothing else depends on them.
+
+   Measured against a pixel ruler at two widths:
+     width 260px -> header 56px, media 56->391  (media 335px)
+     width 320px -> header 56px, media 56->458  (media 402px)
+   The header is FIXED height; the media box scales with width but not
+   proportionally, fitting media = 1.1167*width + 45. A hardcoded height
+   therefore only holds at one exact width, so it is expressed as that
+   formula below — with the constant trimmed 45 -> 36 to leave ~9px of
+   safety. Under-cropping loses a sliver of video; over-cropping shows
+   white, which is far worse. */
+#footage{
+  --accent:var(--red);--beat-hit:var(--red);
+  --ig-w:min(320px, calc(100vw - 44px)); /* never wider than the viewport */
+  --ig-head:56px;                        /* fixed white header, clipped   */
+  --ig-media:calc(var(--ig-w) * 1.1167 + 36px); /* visible media window   */
+  --ig-full:640px;                       /* iframe height; exceeds both   */
+}
 .clips{
-  display:grid;grid-template-columns:repeat(auto-fit,320px);
+  display:grid;grid-template-columns:repeat(auto-fit,var(--ig-w));
   justify-content:center;gap:clamp(14px,2vw,22px);
 }
 .clip{
-  border-top:3px solid var(--red);background:#fff;line-height:0;
+  background:#000;border:1px solid var(--rule);border-top:3px solid var(--red);
   box-shadow:0 18px 40px rgba(0,0,0,.5);
 }
-.clip iframe{width:320px;height:590px;border:0;display:block}
+.clip-media{
+  position:relative;width:var(--ig-w);height:var(--ig-media);
+  overflow:hidden;background:#000;
+}
+.clip-media iframe{
+  position:absolute;top:calc(-1 * var(--ig-head));left:0;
+  width:var(--ig-w);height:var(--ig-full);border:0;display:block;
+}
+/* Instagram's own attribution and click-through are clipped away with the
+   chrome, so they are restored here in the site's own type. */
+.clip-cap{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:11px 13px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bone-dim);border-top:1px solid var(--rule);
+}
+.clip-cap a{color:var(--bone);text-decoration:none;white-space:nowrap;transition:.16s}
+.clip-cap a:hover{color:var(--red)}
 .more{
   display:inline-flex;align-items:center;gap:10px;margin-top:clamp(26px,4vw,40px);
   font-family:var(--display);font-size:clamp(15px,1.9vw,19px);text-transform:uppercase;
@@ -174,11 +220,6 @@ h2 .thin{color:var(--bone-dim)}
   border-bottom:2px solid var(--red);padding-bottom:5px;transition:.18s;
 }
 .more:hover{color:var(--red)}
-@media(max-width:400px){
-  /* below one full column, let the card shrink rather than overflow the page */
-  .clips{grid-template-columns:1fr}
-  .clip iframe{width:100%}
-}
 
 /* ── NOW / COCKRING ── */
 #now{--accent:var(--red);--beat-hit:var(--red)}
@@ -349,12 +390,30 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   </div>
 
   <div class="clips rv">
-    <figure class="clip"><iframe src="https://www.instagram.com/reel/DYuj6RCxDPa/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
-    <figure class="clip"><iframe src="https://www.instagram.com/reel/DZbT9jGp6Sf/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
-    <figure class="clip"><iframe src="https://www.instagram.com/reel/DZ_akmdRZc2/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
-    <figure class="clip"><iframe src="https://www.instagram.com/reel/DcKSwIuRHya/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
-    <figure class="clip"><iframe src="https://www.instagram.com/reel/DbinHX4xXYA/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
-    <figure class="clip"><iframe src="https://www.instagram.com/reel/DbZgGy_xQ3_/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
+    <figure class="clip">
+      <div class="clip-media"><iframe src="https://www.instagram.com/reel/DYuj6RCxDPa/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></div>
+      <figcaption class="clip-cap"><span>@zakglosserman</span><a href="https://www.instagram.com/reel/DYuj6RCxDPa/" target="_blank" rel="noopener">Instagram ↗</a></figcaption>
+    </figure>
+    <figure class="clip">
+      <div class="clip-media"><iframe src="https://www.instagram.com/reel/DZbT9jGp6Sf/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></div>
+      <figcaption class="clip-cap"><span>@zakglosserman</span><a href="https://www.instagram.com/reel/DZbT9jGp6Sf/" target="_blank" rel="noopener">Instagram ↗</a></figcaption>
+    </figure>
+    <figure class="clip">
+      <div class="clip-media"><iframe src="https://www.instagram.com/reel/DZ_akmdRZc2/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></div>
+      <figcaption class="clip-cap"><span>@zakglosserman</span><a href="https://www.instagram.com/reel/DZ_akmdRZc2/" target="_blank" rel="noopener">Instagram ↗</a></figcaption>
+    </figure>
+    <figure class="clip">
+      <div class="clip-media"><iframe src="https://www.instagram.com/reel/DcKSwIuRHya/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></div>
+      <figcaption class="clip-cap"><span>@zakglosserman</span><a href="https://www.instagram.com/reel/DcKSwIuRHya/" target="_blank" rel="noopener">Instagram ↗</a></figcaption>
+    </figure>
+    <figure class="clip">
+      <div class="clip-media"><iframe src="https://www.instagram.com/reel/DbinHX4xXYA/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></div>
+      <figcaption class="clip-cap"><span>@zakglosserman</span><a href="https://www.instagram.com/reel/DbinHX4xXYA/" target="_blank" rel="noopener">Instagram ↗</a></figcaption>
+    </figure>
+    <figure class="clip">
+      <div class="clip-media"><iframe src="https://www.instagram.com/reel/DbZgGy_xQ3_/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></div>
+      <figcaption class="clip-cap"><span>@zakglosserman</span><a href="https://www.instagram.com/reel/DbZgGy_xQ3_/" target="_blank" rel="noopener">Instagram ↗</a></figcaption>
+    </figure>
   </div>
 
   <a class="more" href="https://www.instagram.com/zakglosserman/" target="_blank" rel="noopener">All footage on Instagram ↗</a>
