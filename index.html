@@ -163,6 +163,8 @@ nav{
   border:1px solid transparent;
 }
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--ink);background:var(--bone);outline:none}
+.nav-links .nav-cta{color:var(--red);border-color:var(--red)}
+.nav-links .nav-cta:hover,.nav-links .nav-cta:focus-visible{background:var(--red);color:var(--ink)}
 @media(max-width:520px){
   /* four links + wordmark wrap to two rows and double the sticky bar height */
   nav{padding:0 14px;gap:8px}
@@ -462,6 +464,56 @@ h2 .thin{color:var(--bone-dim)}
 .links .arw{font-size:15px;color:var(--red)}
 .links a:hover .arw{color:var(--ink)}
 
+/* ── CONTACT ──
+   Static hosting cannot send mail, so the form POSTs to a third-party relay
+   that holds the recipient address server-side. That is deliberate: the
+   address appears nowhere in this document, only an opaque endpoint key. */
+#contact{--accent:var(--red);--beat-hit:var(--red);background:#0d0d0f}
+.form{max-width:640px;margin-top:clamp(28px,4vw,44px)}
+.f-row{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:620px){.f-row{grid-template-columns:1fr 1fr}}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.field label{
+  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bone-dim);
+}
+.field label .req{color:var(--red)}
+.field input,.field select,.field textarea{
+  font-family:var(--mono);font-size:15px;color:var(--bone);
+  background:var(--ink);border:1px solid var(--rule);padding:12px 14px;
+  width:100%;transition:border-color .16s;border-radius:0;-webkit-appearance:none;appearance:none;
+}
+.field textarea{min-height:150px;resize:vertical}
+@media(max-width:620px){
+  /* iOS Safari zooms the viewport when a focused input is under 16px.
+     Bumping to 16px on small screens stops the page lurching on tap. */
+  .field input,.field select,.field textarea{font-size:16px}
+}
+.field select{
+  background-image:linear-gradient(45deg,transparent 50%,var(--bone-dim) 50%),linear-gradient(135deg,var(--bone-dim) 50%,transparent 50%);
+  background-position:calc(100% - 19px) 50%,calc(100% - 13px) 50%;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:40px;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red)}
+.field input::placeholder,.field textarea::placeholder{color:#5f5b56}
+/* honeypot — visually gone, still fillable by bots */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.f-send{
+  font-family:var(--display);font-size:17px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--red);color:var(--ink);border:0;padding:15px 34px;cursor:pointer;
+  transition:.16s;margin-top:4px;
+}
+.f-send:hover:not(:disabled){background:var(--bone)}
+.f-send:disabled{opacity:.5;cursor:not-allowed}
+.f-note{font-size:12px;color:var(--bone-dim);margin-top:14px;max-width:52ch}
+.f-status{
+  margin-top:18px;padding:14px 16px;font-size:14px;border-left:3px solid var(--rule);
+  display:none;
+}
+.f-status.show{display:block}
+.f-status.ok{border-left-color:#39d353;color:var(--bone)}
+.f-status.err{border-left-color:var(--red);color:var(--bone)}
+
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);text-align:center}
 .f-name{font-family:var(--display);font-size:clamp(28px,7vw,72px);text-transform:uppercase;line-height:.9;letter-spacing:-.005em}
@@ -498,6 +550,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
     <li><a href="#orange">Orange</a></li>
     <li><a href="#credits">Credits</a></li>
     <li><a href="#listen">Listen</a></li>
+    <li><a class="nav-cta" href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -811,6 +864,54 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   </div>
 </section>
 
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="sec-head rv">
+    <span class="sec-label">Get in touch — 05</span>
+    <h2>BOOKING &amp; <span class="thin">CONTACT.</span></h2>
+    <p class="lede">Shows, session work, fill-ins, press — send a note and it goes straight to Zak.</p>
+  </div>
+
+  <form class="form rv" id="contact-form" novalidate>
+    <div class="f-row">
+      <div class="field">
+        <label for="cf-name">Your name <span class="req">*</span></label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required placeholder="Who's asking">
+      </div>
+      <div class="field">
+        <label for="cf-email">Your email <span class="req">*</span></label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required placeholder="So he can reply">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="cf-subject">What's this about?</label>
+      <select id="cf-subject" name="subject">
+        <option>Booking a show</option>
+        <option>Session / recording work</option>
+        <option>Filling in with a band</option>
+        <option>Press or interview</option>
+        <option>Something else</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="cf-message">Message <span class="req">*</span></label>
+      <textarea id="cf-message" name="message" required placeholder="Dates, band, city, what you need — the more specific the better."></textarea>
+    </div>
+
+    <!-- honeypot: humans never see this; bots fill it and get silently dropped -->
+    <div class="hp" aria-hidden="true">
+      <label for="cf-company">Company</label>
+      <input id="cf-company" name="company" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button class="f-send" type="submit" id="cf-send">Send it</button>
+    <p class="f-note">Goes to Zak directly. No mailing list, nothing stored on this site.</p>
+    <div class="f-status" id="cf-status" role="status" aria-live="polite"></div>
+  </form>
+</section>
+
 <div class="beat" aria-hidden="true" style="--h:20px;--beat-hit:var(--red)">
   <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
   <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -825,6 +926,78 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
 </footer>
 
 <script>
+/* ── CONTACT FORM ─────────────────────────────────────────────────────────
+   THE ONE THING TO CHANGE IS CONTACT_ENDPOINT BELOW.
+
+   This page is on GitHub Pages, which serves static files and cannot send
+   mail. The form therefore POSTs to a relay service that stores the
+   recipient address in ITS dashboard, not here — which is the whole point:
+   Zak's address must not appear in this document, so do NOT paste it below.
+   Only ever put the opaque endpoint URL here.
+
+   Works as-is with either service (both accept FormData and answer JSON):
+     Web3Forms  -> https://api.web3forms.com/submit
+                   (also uncomment ACCESS_KEY and paste the key they email)
+     Formspree  -> https://formspree.io/f/XXXXXXXX
+
+   Until an endpoint is set the form stays usable but reports that it is not
+   connected yet, rather than pretending to send and losing someone's message. */
+const CONTACT_ENDPOINT = '';   // <- paste the relay endpoint URL here
+const CONTACT_ACCESS_KEY = ''; // <- Web3Forms only; leave '' for Formspree
+
+(function(){
+  var form = document.getElementById('contact-form');
+  if(!form) return;
+  var btn = document.getElementById('cf-send');
+  var status = document.getElementById('cf-status');
+
+  function say(msg, kind){
+    status.textContent = msg;
+    status.className = 'f-status show ' + kind;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    // Bot check: the honeypot is invisible to people. If it has content,
+    // report success and send nothing.
+    if(form.company.value){ say('Thanks — message sent.', 'ok'); form.reset(); return; }
+
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    var message = form.message.value.trim();
+    if(!name || !email || !message){ say('Please fill in your name, email and a message.', 'err'); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ say('That email address does not look right.', 'err'); return; }
+
+    if(!CONTACT_ENDPOINT){
+      say('The form is not connected to its mail relay yet, so this would not reach anyone. Reach out via Instagram in the meantime.', 'err');
+      return;
+    }
+
+    var data = new FormData(form);
+    data.delete('company');
+    if(CONTACT_ACCESS_KEY) data.append('access_key', CONTACT_ACCESS_KEY);
+    data.append('from_page', 'zakbash.com');
+
+    btn.disabled = true;
+    var original = btn.textContent;
+    btn.textContent = 'Sending…';
+    say('Sending…', 'ok');
+
+    fetch(CONTACT_ENDPOINT, { method:'POST', body:data, headers:{ 'Accept':'application/json' } })
+      .then(function(r){ return r.json().catch(function(){ return { success: r.ok }; }); })
+      .then(function(res){
+        if(res.success === false || res.error){ throw new Error(res.message || 'rejected'); }
+        say('Sent. Zak will get back to you.', 'ok');
+        form.reset();
+      })
+      .catch(function(){
+        say('That did not go through. Try again, or reach him on Instagram.', 'err');
+      })
+      .finally(function(){ btn.disabled = false; btn.textContent = original; });
+  });
+})();
+
 /* Deferred reel embeds.
    loading="lazy" alone works, but Chrome's distance threshold is ~3000px on a
    fast connection — measured: on a 390x620 viewport, 5 of 9 embeds fetched
