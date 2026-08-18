@@ -289,6 +289,31 @@ h2 .thin{color:var(--bone-dim)}
 }
 .photo figcaption b{color:var(--orange);font-weight:700}
 
+/* ── SUB-HEADING (compilations, credit groups) ── */
+.sub{
+  font-family:var(--display);font-weight:400;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--bone-dim);margin-bottom:14px;
+}
+.comps{margin-top:clamp(34px,5vw,56px)}
+
+/* ── OTHER CREDITS ── */
+#credits{--accent:var(--red);--beat-hit:var(--red)}
+.credit-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(min-width:800px){.credit-grid{grid-template-columns:1fr 1fr}}
+.credit{background:var(--ink);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:10px}
+.credit .yr{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--red)}
+.credit h3{
+  font-family:var(--display);font-weight:400;font-size:clamp(22px,3vw,30px);
+  text-transform:uppercase;letter-spacing:.02em;line-height:1.06;
+}
+.credit .role{
+  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bone);border:1px solid var(--red);align-self:flex-start;padding:4px 9px;
+}
+.credit p{color:var(--bone-dim);font-size:14px;max-width:46ch}
+.credit a{color:var(--red);text-decoration:none;border-bottom:1px solid var(--rule)}
+.credit a:hover{border-bottom-color:currentColor}
+
 /* ── TIMELINE ── */
 .tl{list-style:none;position:relative;padding-left:26px}
 .tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--rule)}
@@ -351,6 +376,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
     <li><a href="#footage">Footage</a></li>
     <li><a href="#now">Now</a></li>
     <li><a href="#orange">Orange</a></li>
+    <li><a href="#credits">Credits</a></li>
     <li><a href="#listen">Listen</a></li>
   </ul>
 </nav>
@@ -482,7 +508,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   <div class="sec-head rv">
     <span class="sec-label">Formerly — 02</span>
     <h2>THE ORANGE <span class="thin">YEARS.</span></h2>
-    <p class="lede">In 2002, Zak and vocalist-bassist Joe Dexter started <strong>Orange</strong> in Los Angeles while still in their early teens. By sixteen they had a deal with Hellcat, and by 2004 a debut album out on it.</p>
+    <p class="lede">In 2002, Zak and vocalist-bassist Joe Dexter started <strong>Orange</strong> in Los Angeles while still in their early teens. By sixteen they had a deal with Hellcat, and by 2005 a debut album out on it.</p>
     <p class="lede">He drummed for the band for twelve years — through four records, a run of television placements, and most of the punk world’s touring circuit — before stepping away in 2014.</p>
   </div>
 
@@ -510,7 +536,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
           <p>Picked up by Tim Armstrong of Rancid — while the band were still teenagers.</p>
         </li>
         <li>
-          <span class="yr">2004</span>
+          <span class="yr">2005</span>
           <h4>Welcome to the World of Orange</h4>
           <p>Their debut full-length.</p>
         </li>
@@ -520,9 +546,14 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
           <p>The second album, and the peak of the Hellcat run.</p>
         </li>
         <li>
-          <span class="yr">2010–11</span>
-          <h4>Phoenix · Dead Sexy EP</h4>
-          <p>An album and an EP. “Revolution” became the theme to Cartoon Network’s <em>Generator&nbsp;Rex</em>; the band also turned up on <em>The&nbsp;O.C.</em> and <em>The&nbsp;Hills</em>.</p>
+          <span class="yr">2009</span>
+          <h4>Phoenix</h4>
+          <p>Produced and mixed by Gavin MacKillop (Sugarcult, MxPx, The&nbsp;La’s). “Revolution” became the theme to Cartoon Network’s <em>Generator&nbsp;Rex</em>; the band also turned up on <em>The&nbsp;O.C.</em> and <em>The&nbsp;Hills</em>.</p>
+        </li>
+        <li>
+          <span class="yr">2011</span>
+          <h4>Dead Sexy <small>— EP</small></h4>
+          <p>Three tracks, produced by Ryan Hewitt. The last Orange record of his run.</p>
         </li>
         <li>
           <span class="yr">2014</span>
@@ -533,6 +564,32 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
     </div>
   </div>
 
+  <div class="comps rv">
+    <h3 class="sub">Also appeared on</h3>
+    <ul class="rel">
+      <li><div class="row">
+        <span class="yr">2004</span>
+        <span class="ttl">Give ’Em the Boot IV<small>“No Rest for the Weekend”</small></span>
+        <span class="meta">Hellcat</span>
+      </div></li>
+      <li><div class="row">
+        <span class="yr">2006</span>
+        <span class="ttl">Give ’Em the Boot V<small>“I’m a CXXt”</small></span>
+        <span class="meta">Hellcat</span>
+      </div></li>
+      <li><div class="row">
+        <span class="yr">2007</span>
+        <span class="ttl">Give ’Em the Boot VI<small>“Get the F**k Out of My Way”</small></span>
+        <span class="meta">Hellcat</span>
+      </div></li>
+      <li><div class="row">
+        <span class="yr">2009</span>
+        <span class="ttl">Give ’Em the Boot VII<small>“Standing Still”</small></span>
+        <span class="meta">Hellcat</span>
+      </div></li>
+    </ul>
+  </div>
+
   <div class="marq" aria-label="Bands Orange toured with">
     <div class="marq-in">
       <span>Toured with</span><b>Rancid</b><span>·</span><b>Misfits</b><span>·</span><b>The Adicts</b><span>·</span><b>UK Subs</b><span>·</span><b>Reel Big Fish</b><span>·</span><b>Bowling for Soup</b><span>·</span><b>Zebrahead</b><span>·</span><b>Vans Warped Tour</b><span>·</span>
@@ -541,10 +598,34 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   </div>
 </section>
 
+<!-- ══ OTHER CREDITS ══ -->
+<section id="credits">
+  <div class="sec-head rv">
+    <span class="sec-label">Elsewhere on record — 03</span>
+    <h2>OTHER <span class="thin">CREDITS.</span></h2>
+    <p class="lede">Sessions and side projects outside the two main bands — tracking drums for other people’s records.</p>
+  </div>
+
+  <div class="credit-grid rv">
+    <article class="credit">
+      <span class="yr">2024</span>
+      <h3>Ingrata</h3>
+      <span class="role">Drums — recorded</span>
+      <p>Sacramento hardcore. Zak was in the original lineup and played drums on <em>Demo&nbsp;’24</em>, the band’s four-track debut, before stepping away to focus on other projects.</p>
+    </article>
+    <article class="credit">
+      <span class="yr">2015</span>
+      <h3>Coyote Shivers</h3>
+      <span class="role">Drums — single</span>
+      <p>Drums on the independently released single “Don’t Believe a Word,” out September&nbsp;2015.</p>
+    </article>
+  </div>
+</section>
+
 <!-- ══ LINKS ══ -->
 <section id="listen">
   <div class="sec-head rv">
-    <span class="sec-label">Elsewhere — 03</span>
+    <span class="sec-label">Elsewhere — 04</span>
     <h2>LISTEN <span class="thin">&amp; FOLLOW.</span></h2>
   </div>
   <div class="links rv">
