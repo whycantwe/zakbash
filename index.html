@@ -153,6 +153,33 @@ h2 .thin{color:var(--bone-dim)}
 .lede + .lede{margin-top:14px}
 .lede strong{color:var(--accent,var(--red));font-weight:400}
 
+/* ── FOOTAGE (Instagram embeds) ──
+   Instagram's embed chrome is fixed-height and does not scale with a fluid
+   column, so the columns are a fixed 320px and the iframe height is pinned
+   to the card's measured natural height. Fluid columns clip the footer. */
+#footage{--accent:var(--red);--beat-hit:var(--red)}
+.clips{
+  display:grid;grid-template-columns:repeat(auto-fit,320px);
+  justify-content:center;gap:clamp(14px,2vw,22px);
+}
+.clip{
+  border-top:3px solid var(--red);background:#fff;line-height:0;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);
+}
+.clip iframe{width:320px;height:590px;border:0;display:block}
+.more{
+  display:inline-flex;align-items:center;gap:10px;margin-top:clamp(26px,4vw,40px);
+  font-family:var(--display);font-size:clamp(15px,1.9vw,19px);text-transform:uppercase;
+  letter-spacing:.03em;text-decoration:none;color:var(--bone);
+  border-bottom:2px solid var(--red);padding-bottom:5px;transition:.18s;
+}
+.more:hover{color:var(--red)}
+@media(max-width:400px){
+  /* below one full column, let the card shrink rather than overflow the page */
+  .clips{grid-template-columns:1fr}
+  .clip iframe{width:100%}
+}
+
 /* ── NOW / COCKRING ── */
 #now{--accent:var(--red);--beat-hit:var(--red)}
 .now-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,52px)}
@@ -280,6 +307,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
 <nav>
   <a class="brand" href="#top">ZAK <em>GLOSSERMAN</em></a>
   <ul class="nav-links">
+    <li><a href="#footage">Footage</a></li>
     <li><a href="#now">Now</a></li>
     <li><a href="#orange">Orange</a></li>
     <li><a href="#listen">Listen</a></li>
@@ -311,6 +339,26 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
     <p>Signed to Hellcat Records at sixteen. Twelve years and four records with Orange. Still behind the kit — louder, faster, and further north.</p>
   </div>
 </header>
+
+<!-- ══ FOOTAGE ══ -->
+<section id="footage">
+  <div class="sec-head rv">
+    <span class="sec-label">Recent footage</span>
+    <h2>ON THE <span class="thin">KIT.</span></h2>
+    <p class="lede">Reels from <strong>@zakglosserman</strong> — playing, tracking, and talking shop.</p>
+  </div>
+
+  <div class="clips rv">
+    <figure class="clip"><iframe src="https://www.instagram.com/reel/DYuj6RCxDPa/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
+    <figure class="clip"><iframe src="https://www.instagram.com/reel/DZbT9jGp6Sf/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
+    <figure class="clip"><iframe src="https://www.instagram.com/reel/DZ_akmdRZc2/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
+    <figure class="clip"><iframe src="https://www.instagram.com/reel/DcKSwIuRHya/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
+    <figure class="clip"><iframe src="https://www.instagram.com/reel/DbinHX4xXYA/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
+    <figure class="clip"><iframe src="https://www.instagram.com/reel/DbZgGy_xQ3_/embed/" title="Instagram reel by @zakglosserman" loading="lazy" scrolling="no" allowfullscreen></iframe></figure>
+  </div>
+
+  <a class="more" href="https://www.instagram.com/zakglosserman/" target="_blank" rel="noopener">All footage on Instagram ↗</a>
+</section>
 
 <!-- ══ NOW ══ -->
 <section id="now">
