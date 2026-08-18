@@ -73,12 +73,20 @@ def validate(code, timeout=25):
 
 
 def figure(code):
+    """One clip card.
+
+    NOTE: data-src, not src. The page holds the embed URL in data-src and swaps
+    it in via IntersectionObserver 300px before the clip scrolls into view.
+    Native loading="lazy" was measured to fetch 5 of 9 embeds before any scroll
+    on a 390px viewport, because Chrome's threshold is ~3000px. If you change
+    this back to src you silently undo that and every embed loads up front.
+    """
     embed = f"https://www.instagram.com/reel/{code}/embed/"
     link = f"https://www.instagram.com/reel/{code}/"
     return (
         '    <figure class="clip">\n'
-        f'      <div class="clip-media"><iframe src="{embed}" '
-        f'title="Instagram reel by {HANDLE}" loading="lazy" scrolling="no" allowfullscreen></iframe></div>\n'
+        f'      <div class="clip-media"><iframe data-src="{embed}" '
+        f'title="Instagram reel by {HANDLE}" scrolling="no" allowfullscreen></iframe></div>\n'
         f'      <figcaption class="clip-cap"><span>{HANDLE}</span>'
         f'<a href="{link}" target="_blank" rel="noopener">Instagram ↗</a></figcaption>\n'
         "    </figure>\n"
