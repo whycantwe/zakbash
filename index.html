@@ -220,6 +220,16 @@ h1 .l1{display:block}
   /* portrait screens can afford the near-square original — show it whole */
   .hero-shot img{aspect-ratio:1/1;object-position:50% 50%}
 }
+/* Statement line under the hero photo. Deliberately smaller than the h1 so the
+   name still leads — this is a tagline, not a second headline. Kept as a <p>
+   rather than an <h2> so it does not sit in the heading outline. */
+.hero-line{
+  font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(26px,5.2vw,62px);line-height:.94;letter-spacing:-.01em;
+  margin-top:clamp(20px,3vw,34px);color:var(--bone);
+}
+.hero-line .thin{color:var(--bone-dim)}
+
 .hero-sub{
   margin-top:clamp(24px,4vw,44px);display:grid;
   grid-template-columns:1fr;gap:clamp(20px,3vw,44px);
@@ -624,6 +634,8 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
     <img src="img/zak-live.jpg" alt="Zak Glosserman playing drums, sticks mid-air">
   </figure>
 
+  <p class="hero-line">Twenty-four years <span class="thin">behind the kit.</span></p>
+
   <div class="hero-sub">
     <div>
       <span class="k">Currently</span>
@@ -693,7 +705,6 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
 <section id="bio">
   <div class="sec-head rv">
     <span class="sec-label">The short version</span>
-    <h2>TWENTY-FOUR YEARS <span class="thin">BEHIND THE KIT.</span></h2>
   </div>
 
   <div class="bio-body rv">
