@@ -500,6 +500,9 @@ h2 .thin{color:var(--bone-dim)}
   color:var(--red);margin:20px 0 10px;
 }
 .gear-sub:first-of-type{margin-top:0}
+.brand-link{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);transition:.16s}
+.brand-link:hover{border-bottom-color:currentColor}
+.lede .brand-link{color:var(--accent,var(--red))}
 
 /* ── CONTACT ──
    Static hosting cannot send mail, so the form POSTs to a third-party relay
@@ -897,7 +900,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   <div class="sec-head rv">
     <span class="sec-label">The setup — 04</span>
     <h2>WHAT HE <span class="thin">HITS.</span></h2>
-    <p class="lede">Two kits, both built by <strong>C&amp;C Drum Company</strong>. Shell sizes are depth&nbsp;×&nbsp;diameter.</p>
+    <p class="lede">Two kits, both built by <a class="brand-link" href="https://www.candcdrumsusa.com/" target="_blank" rel="noopener">C&amp;C Drum Company</a>. Shell sizes are depth&nbsp;×&nbsp;diameter.</p>
   </div>
 
   <div class="kits rv">
@@ -924,15 +927,21 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   <div class="gear-grid">
     <div class="gear-block rv">
       <h3>Snares</h3>
+
+      <p class="gear-sub"><a class="brand-link" href="https://www.ludwig-drums.com/" target="_blank" rel="noopener">Ludwig</a></p>
       <ul class="gear-list">
-        <li><span class="sz">6.5×14</span><span class="nm">Ludwig Black Beauty</span></li>
-        <li><span class="sz">6.5×14</span><span class="nm">Ludwig Copperphonic</span></li>
-        <li><span class="sz">6.5×14</span><span class="nm">Ludwig hand-hammered bronze</span></li>
-        <li><span class="sz">5×14</span><span class="nm">Ludwig Supraphonic</span></li>
-        <li><span class="sz">6.5×14</span><span class="nm">DW nickel over brass</span></li>
+        <li><span class="sz">6.5×14</span><span class="nm">Black Beauty</span></li>
+        <li><span class="sz">6.5×14</span><span class="nm">Copperphonic</span></li>
+        <li><span class="sz">6.5×14</span><span class="nm">Hand-hammered bronze</span></li>
+        <li><span class="sz">5×14</span><span class="nm">Supraphonic</span></li>
       </ul>
 
-      <p class="gear-sub">Sticks — Pro-Mark</p>
+      <p class="gear-sub"><a class="brand-link" href="https://www.dwdrums.com/" target="_blank" rel="noopener">DW</a></p>
+      <ul class="gear-list">
+        <li><span class="sz">6.5×14</span><span class="nm">Nickel over brass</span></li>
+      </ul>
+
+      <p class="gear-sub">Sticks — <a class="brand-link" href="https://www.daddario.com/promark-find-your-stripes/renamed/" target="_blank" rel="noopener">Pro-Mark</a></p>
       <ul class="gear-list">
         <li><span class="sz">747B</span><span class="nm">Forward</span></li>
         <li><span class="sz">5A</span><span class="nm">Rebound</span></li>
@@ -942,7 +951,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
     <div class="gear-block rv">
       <h3>Cymbals</h3>
 
-      <p class="gear-sub">Zildjian K Custom</p>
+      <p class="gear-sub"><a class="brand-link" href="https://zildjian.com/" target="_blank" rel="noopener">Zildjian</a> K Custom</p>
       <ul class="gear-list">
         <li><span class="sz">14&Prime;</span><span class="nm">Hi-hats</span></li>
         <li><span class="sz">19&Prime;</span><span class="nm">Special Dry trash crash</span></li>
@@ -951,7 +960,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
         <li><span class="sz">21&Prime;</span><span class="nm">Crash ride</span></li>
       </ul>
 
-      <p class="gear-sub">Dream</p>
+      <p class="gear-sub"><a class="brand-link" href="https://dreamcymbals.com/" target="_blank" rel="noopener">Dream</a></p>
       <ul class="gear-list">
         <li><span class="sz">15&Prime;</span><span class="nm">Energy hi-hats</span></li>
         <li><span class="sz">20&Prime;</span><span class="nm">Bliss crash ride</span></li>
