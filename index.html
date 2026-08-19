@@ -464,6 +464,43 @@ h2 .thin{color:var(--bone-dim)}
 .links .arw{font-size:15px;color:var(--red)}
 .links a:hover .arw{color:var(--ink)}
 
+/* ── GEAR ── */
+#gear{--accent:var(--red);--beat-hit:var(--red);background:#0d0d0f}
+.kits{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(min-width:760px){.kits{grid-template-columns:1fr 1fr}}
+.kit{background:var(--ink);padding:clamp(22px,3vw,32px)}
+.kit .n{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim)}
+.kit h3{
+  font-family:var(--display);font-weight:400;font-size:clamp(21px,2.8vw,28px);
+  text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin:8px 0 18px;
+}
+.spec{list-style:none;border-top:1px solid var(--rule)}
+.spec li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:11px 0;border-bottom:1px solid var(--rule);
+}
+.spec .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
+.spec .v{font-family:var(--display);font-size:17px;letter-spacing:.03em;white-space:nowrap}
+.gear-grid{display:grid;grid-template-columns:1fr;gap:clamp(26px,3.5vw,44px);margin-top:clamp(30px,4vw,52px)}
+@media(min-width:860px){.gear-grid{grid-template-columns:1fr 1fr}}
+.gear-block h3{
+  font-family:var(--display);font-weight:400;font-size:13px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--bone-dim);margin-bottom:14px;
+}
+.gear-list{list-style:none;border-top:1px solid var(--rule)}
+.gear-list li{padding:10px 0;border-bottom:1px solid var(--rule);display:flex;gap:14px;align-items:baseline}
+.gear-list .sz{
+  font-family:var(--display);font-size:15px;color:var(--red);letter-spacing:.03em;
+  min-width:52px;flex-shrink:0;
+}
+.gear-list .nm{font-size:14px;color:var(--bone)}
+.gear-list .nm small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:3px}
+.gear-sub{
+  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red);margin:20px 0 10px;
+}
+.gear-sub:first-of-type{margin-top:0}
+
 /* ── CONTACT ──
    Static hosting cannot send mail, so the form POSTs to a third-party relay
    that holds the recipient address server-side. That is deliberate: the
@@ -569,6 +606,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
     <li><a href="#now">Now</a></li>
     <li><a href="#orange">Orange</a></li>
     <li><a href="#credits">Credits</a></li>
+    <li><a href="#gear">Gear</a></li>
     <li><a href="#listen">Listen</a></li>
     <li><a class="nav-cta" href="#contact">Contact</a></li>
   </ul>
@@ -854,10 +892,80 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   </div>
 </section>
 
+<!-- ══ GEAR ══ -->
+<section id="gear">
+  <div class="sec-head rv">
+    <span class="sec-label">The setup — 04</span>
+    <h2>WHAT HE <span class="thin">HITS.</span></h2>
+    <p class="lede">Two kits, both built by <strong>C&amp;C Drum Company</strong>. Shell sizes are depth&nbsp;×&nbsp;diameter.</p>
+  </div>
+
+  <div class="kits rv">
+    <article class="kit">
+      <span class="n">Kit 01</span>
+      <h3>Red Sparkle</h3>
+      <ul class="spec">
+        <li><span class="k">Bass drum</span><span class="v">18 × 24</span></li>
+        <li><span class="k">Rack tom</span><span class="v">10 × 14</span></li>
+        <li><span class="k">Floor tom</span><span class="v">18 × 18</span></li>
+      </ul>
+    </article>
+    <article class="kit">
+      <span class="n">Kit 02</span>
+      <h3>Natural Lacquer</h3>
+      <ul class="spec">
+        <li><span class="k">Bass drum</span><span class="v">20 × 24</span></li>
+        <li><span class="k">Rack tom</span><span class="v">9 × 13</span></li>
+        <li><span class="k">Floor tom</span><span class="v">16 × 16</span></li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="gear-grid">
+    <div class="gear-block rv">
+      <h3>Snares</h3>
+      <ul class="gear-list">
+        <li><span class="sz">6.5×14</span><span class="nm">Ludwig Black Beauty</span></li>
+        <li><span class="sz">6.5×14</span><span class="nm">Ludwig Copperphonic</span></li>
+        <li><span class="sz">6.5×14</span><span class="nm">Ludwig hand-hammered bronze</span></li>
+        <li><span class="sz">5×14</span><span class="nm">Ludwig Supraphonic</span></li>
+        <li><span class="sz">6.5×14</span><span class="nm">DW nickel over brass</span></li>
+      </ul>
+
+      <p class="gear-sub">Sticks — Pro-Mark</p>
+      <ul class="gear-list">
+        <li><span class="sz">747B</span><span class="nm">Forward</span></li>
+        <li><span class="sz">5A</span><span class="nm">Rebound</span></li>
+      </ul>
+    </div>
+
+    <div class="gear-block rv">
+      <h3>Cymbals</h3>
+
+      <p class="gear-sub">Zildjian K Custom</p>
+      <ul class="gear-list">
+        <li><span class="sz">14&Prime;</span><span class="nm">Hi-hats</span></li>
+        <li><span class="sz">19&Prime;</span><span class="nm">Special Dry trash crash</span></li>
+        <li><span class="sz">20&Prime;</span><span class="nm">Dark crash</span></li>
+        <li><span class="sz">21&Prime;</span><span class="nm">Hybrid ride</span></li>
+        <li><span class="sz">21&Prime;</span><span class="nm">Crash ride</span></li>
+      </ul>
+
+      <p class="gear-sub">Dream</p>
+      <ul class="gear-list">
+        <li><span class="sz">15&Prime;</span><span class="nm">Energy hi-hats</span></li>
+        <li><span class="sz">20&Prime;</span><span class="nm">Bliss crash ride</span></li>
+        <li><span class="sz">20&Prime;</span><span class="nm">Bliss paper thin crash</span></li>
+        <li><span class="sz">22&Prime;</span><span class="nm">Energy crash ride</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ══ LINKS ══ -->
 <section id="listen">
   <div class="sec-head rv">
-    <span class="sec-label">Elsewhere — 04</span>
+    <span class="sec-label">Elsewhere — 05</span>
     <h2>LISTEN <span class="thin">&amp; FOLLOW.</span></h2>
   </div>
   <div class="links rv">
@@ -887,7 +995,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
 <!-- ══ CONTACT ══ -->
 <section id="contact">
   <div class="sec-head rv">
-    <span class="sec-label">Get in touch — 05</span>
+    <span class="sec-label">Get in touch — 06</span>
     <h2>BOOKING &amp; <span class="thin">CONTACT.</span></h2>
     <p class="lede">Shows, session work, fill-ins, press — send a note and it goes straight to Zak.</p>
   </div>
