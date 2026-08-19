@@ -230,21 +230,31 @@ h1 .l1{display:block}
 }
 .hero-line .thin{color:var(--bone-dim)}
 
-.hero-sub{
-  margin-top:clamp(24px,4vw,44px);display:grid;
-  grid-template-columns:1fr;gap:clamp(20px,3vw,44px);
-  border-top:1px solid var(--rule);padding-top:26px;
+.hero-lede{
+  margin-top:clamp(24px,4vw,40px);border-top:1px solid var(--rule);padding-top:24px;
+  max-width:56ch;color:var(--bone);font-size:clamp(15px,1.6vw,17px);
 }
-@media(min-width:560px){.hero-sub{grid-template-columns:1fr 1fr}.hero-sub p{grid-column:1/-1}}
-@media(min-width:880px){.hero-sub{grid-template-columns:1fr 1fr 1.5fr}.hero-sub p{grid-column:auto}}
-.hero-sub p{max-width:44ch;color:var(--bone)}
-.hero-sub .k{
-  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--bone-dim);display:block;margin-bottom:8px;
+
+/* ── BAND STRIP ──
+   The two band credits, lifted out of the hero and set as a full-bleed
+   divider between the footage and the bio. Full-bleed on purpose: it is
+   punctuation between sections, not content inside one. */
+.band-strip{
+  display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
 }
-.hero-sub .v{font-family:var(--display);font-size:20px;letter-spacing:.03em;text-transform:uppercase;line-height:1.2}
-.hero-sub .v a{color:var(--red);text-decoration:none;border-bottom:2px solid transparent;transition:.16s}
-.hero-sub .v a:hover{border-bottom-color:var(--red)}
+@media(min-width:620px){.band-strip{grid-template-columns:1fr 1fr}}
+.band-strip > div{background:var(--ink);padding:clamp(20px,3vw,34px) var(--pad)}
+.band-strip .k{
+  display:block;font-size:10px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--bone-dim);margin-bottom:9px;
+}
+.band-strip .v{
+  font-family:var(--display);font-size:clamp(20px,3vw,32px);letter-spacing:.03em;
+  text-transform:uppercase;line-height:1.1;
+}
+.band-strip .v a{color:var(--red);text-decoration:none;border-bottom:2px solid transparent;transition:.16s}
+.band-strip .v a:hover{border-bottom-color:var(--red)}
 
 /* ── SECTION SCAFFOLD ── */
 section{padding:clamp(56px,9vw,120px) var(--pad);position:relative;border-top:1px solid var(--rule)}
@@ -636,17 +646,7 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
 
   <p class="hero-line">Twenty-four years <span class="thin">behind the kit.</span></p>
 
-  <div class="hero-sub">
-    <div>
-      <span class="k">Currently</span>
-      <span class="v"><a href="#now">Cockring</a></span>
-    </div>
-    <div>
-      <span class="k">Formerly</span>
-      <span class="v"><a href="#orange">Orange · 2002–2014</a></span>
-    </div>
-    <p>Signed to Hellcat Records at sixteen. Twelve years and four records with Orange. Still behind the kit — louder, faster, and further north.</p>
-  </div>
+  <p class="hero-lede">Signed to Hellcat Records at sixteen. Twelve years and four records with Orange. Still behind the kit — louder, faster, and further north.</p>
 </header>
 
 <!-- ══ FOOTAGE ══ -->
@@ -700,6 +700,17 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
 
   <a class="more" href="https://www.instagram.com/zakglosserman/" target="_blank" rel="noopener">All footage on Instagram ↗</a>
 </section>
+
+<div class="band-strip rv">
+  <div>
+    <span class="k">Currently</span>
+    <span class="v"><a href="#now">Cockring</a></span>
+  </div>
+  <div>
+    <span class="k">Formerly</span>
+    <span class="v"><a href="#orange">Orange · 2002–2014</a></span>
+  </div>
+</div>
 
 <!-- ══ BIO ══ -->
 <section id="bio">
