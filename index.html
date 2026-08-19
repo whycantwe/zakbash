@@ -464,45 +464,38 @@ h2 .thin{color:var(--bone-dim)}
 .links .arw{font-size:15px;color:var(--red)}
 .links a:hover .arw{color:var(--ink)}
 
-/* ── GEAR ── */
+/* ── GEAR (spec plate) ──
+   The measurements are the graphic. Big display numerals in a fixed-width
+   column so every label lines up regardless of how wide the number is —
+   "6.5×14" and "5A" have to sit on the same grid. */
 #gear{--accent:var(--red);--beat-hit:var(--red);background:#0d0d0f}
-.kits{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
-@media(min-width:760px){.kits{grid-template-columns:1fr 1fr}}
-.kit{background:var(--ink);padding:clamp(22px,3vw,32px)}
-.kit .n{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim)}
-.kit h3{
-  font-family:var(--display);font-weight:400;font-size:clamp(21px,2.8vw,28px);
-  text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin:8px 0 18px;
+.plate{border-top:1px solid var(--rule);margin-top:clamp(26px,3.5vw,40px)}
+.plate-grp{
+  font-family:var(--display);font-weight:400;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--bone-dim);
+  padding:clamp(22px,3vw,32px) 0 10px;border-bottom:1px solid var(--rule);
 }
-.spec{list-style:none;border-top:1px solid var(--rule)}
-.spec li{
-  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
-  padding:11px 0;border-bottom:1px solid var(--rule);
+.plate-grp a{color:var(--red);text-decoration:none;border-bottom:1px solid transparent;transition:.16s}
+.plate-grp a:hover{border-bottom-color:var(--red)}
+.bt-row{
+  display:flex;align-items:baseline;gap:clamp(14px,3vw,40px);
+  padding:clamp(11px,1.5vw,18px) 0;border-bottom:1px solid var(--rule);flex-wrap:wrap;
 }
-.spec .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
-.spec .v{font-family:var(--display);font-size:17px;letter-spacing:.03em;white-space:nowrap}
-.gear-grid{display:grid;grid-template-columns:1fr;gap:clamp(26px,3.5vw,44px);margin-top:clamp(30px,4vw,52px)}
-@media(min-width:860px){.gear-grid{grid-template-columns:1fr 1fr}}
-.gear-block h3{
-  font-family:var(--display);font-weight:400;font-size:13px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--bone-dim);margin-bottom:14px;
+.bt-num{
+  font-family:var(--display);font-weight:400;line-height:.82;letter-spacing:-.02em;
+  font-size:clamp(36px,6.2vw,74px);color:var(--bone);
+  min-width:clamp(148px,21vw,268px);
 }
-.gear-list{list-style:none;border-top:1px solid var(--rule)}
-.gear-list li{padding:10px 0;border-bottom:1px solid var(--rule);display:flex;gap:14px;align-items:baseline}
-.gear-list .sz{
-  font-family:var(--display);font-size:15px;color:var(--red);letter-spacing:.03em;
-  min-width:52px;flex-shrink:0;
+.bt-num em{font-style:normal;color:var(--red)}
+.bt-meta{flex:1;min-width:160px}
+.bt-meta .t{
+  display:block;font-family:var(--display);font-weight:400;
+  font-size:clamp(15px,1.9vw,20px);text-transform:uppercase;letter-spacing:.03em;line-height:1.2;
 }
-.gear-list .nm{font-size:14px;color:var(--bone)}
-.gear-list .nm small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:3px}
-.gear-sub{
-  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--red);margin:20px 0 10px;
+.bt-meta .s{
+  display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bone-dim);margin-top:5px;
 }
-.gear-sub:first-of-type{margin-top:0}
-.brand-link{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);transition:.16s}
-.brand-link:hover{border-bottom-color:currentColor}
-.lede .brand-link{color:var(--accent,var(--red))}
 
 /* ── CONTACT ──
    Static hosting cannot send mail, so the form POSTs to a third-party relay
@@ -900,74 +893,39 @@ footer{border-top:1px solid var(--rule);padding:clamp(34px,5vw,56px) var(--pad);
   <div class="sec-head rv">
     <span class="sec-label">The setup — 04</span>
     <h2>WHAT HE <span class="thin">HITS.</span></h2>
-    <p class="lede">Two kits, both built by <a class="brand-link" href="https://www.candcdrumsusa.com/" target="_blank" rel="noopener">C&amp;C Drum Company</a>. Shell sizes are depth&nbsp;×&nbsp;diameter.</p>
+    <p class="lede">Two kits, five snares, nine cymbals. Shell sizes are depth&nbsp;&times;&nbsp;diameter; cymbals are diameter.</p>
   </div>
 
-  <div class="kits rv">
-    <article class="kit">
-      <span class="n">Kit 01</span>
-      <h3>Red Sparkle</h3>
-      <ul class="spec">
-        <li><span class="k">Bass drum</span><span class="v">18 × 24</span></li>
-        <li><span class="k">Rack tom</span><span class="v">10 × 14</span></li>
-        <li><span class="k">Floor tom</span><span class="v">18 × 18</span></li>
-      </ul>
-    </article>
-    <article class="kit">
-      <span class="n">Kit 02</span>
-      <h3>Natural Lacquer</h3>
-      <ul class="spec">
-        <li><span class="k">Bass drum</span><span class="v">20 × 24</span></li>
-        <li><span class="k">Rack tom</span><span class="v">9 × 13</span></li>
-        <li><span class="k">Floor tom</span><span class="v">16 × 16</span></li>
-      </ul>
-    </article>
-  </div>
-
-  <div class="gear-grid">
-    <div class="gear-block rv">
-      <h3>Snares</h3>
-
-      <p class="gear-sub"><a class="brand-link" href="https://www.ludwig-drums.com/" target="_blank" rel="noopener">Ludwig</a></p>
-      <ul class="gear-list">
-        <li><span class="sz">6.5×14</span><span class="nm">Black Beauty</span></li>
-        <li><span class="sz">6.5×14</span><span class="nm">Copperphonic</span></li>
-        <li><span class="sz">6.5×14</span><span class="nm">Hand-hammered bronze</span></li>
-        <li><span class="sz">5×14</span><span class="nm">Supraphonic</span></li>
-      </ul>
-
-      <p class="gear-sub"><a class="brand-link" href="https://www.dwdrums.com/" target="_blank" rel="noopener">DW</a></p>
-      <ul class="gear-list">
-        <li><span class="sz">6.5×14</span><span class="nm">Nickel over brass</span></li>
-      </ul>
-
-      <p class="gear-sub">Sticks — <a class="brand-link" href="https://www.daddario.com/promark-find-your-stripes/renamed/" target="_blank" rel="noopener">Pro-Mark</a></p>
-      <ul class="gear-list">
-        <li><span class="sz">747B</span><span class="nm">Forward</span></li>
-        <li><span class="sz">5A</span><span class="nm">Rebound</span></li>
-      </ul>
-    </div>
-
-    <div class="gear-block rv">
-      <h3>Cymbals</h3>
-
-      <p class="gear-sub"><a class="brand-link" href="https://zildjian.com/" target="_blank" rel="noopener">Zildjian</a> K Custom</p>
-      <ul class="gear-list">
-        <li><span class="sz">14&Prime;</span><span class="nm">Hi-hats</span></li>
-        <li><span class="sz">19&Prime;</span><span class="nm">Special Dry trash crash</span></li>
-        <li><span class="sz">20&Prime;</span><span class="nm">Dark crash</span></li>
-        <li><span class="sz">21&Prime;</span><span class="nm">Hybrid ride</span></li>
-        <li><span class="sz">21&Prime;</span><span class="nm">Crash ride</span></li>
-      </ul>
-
-      <p class="gear-sub"><a class="brand-link" href="https://dreamcymbals.com/" target="_blank" rel="noopener">Dream</a></p>
-      <ul class="gear-list">
-        <li><span class="sz">15&Prime;</span><span class="nm">Energy hi-hats</span></li>
-        <li><span class="sz">20&Prime;</span><span class="nm">Bliss crash ride</span></li>
-        <li><span class="sz">20&Prime;</span><span class="nm">Bliss paper thin crash</span></li>
-        <li><span class="sz">22&Prime;</span><span class="nm">Energy crash ride</span></li>
-      </ul>
-    </div>
+  <div class="plate rv">
+    <p class="plate-grp"><a href="https://www.candcdrumsusa.com/" target="_blank" rel="noopener">C&amp;C</a> &mdash; Kit 01, Red Sparkle</p>
+      <div class="bt-row"><span class="bt-num">18<em>&times;</em>24</span><span class="bt-meta"><span class="t">Bass drum</span></span></div>
+      <div class="bt-row"><span class="bt-num">10<em>&times;</em>14</span><span class="bt-meta"><span class="t">Rack tom</span></span></div>
+      <div class="bt-row"><span class="bt-num">18<em>&times;</em>18</span><span class="bt-meta"><span class="t">Floor tom</span></span></div>
+    <p class="plate-grp"><a href="https://www.candcdrumsusa.com/" target="_blank" rel="noopener">C&amp;C</a> &mdash; Kit 02, Natural Lacquer</p>
+      <div class="bt-row"><span class="bt-num">20<em>&times;</em>24</span><span class="bt-meta"><span class="t">Bass drum</span></span></div>
+      <div class="bt-row"><span class="bt-num">9<em>&times;</em>13</span><span class="bt-meta"><span class="t">Rack tom</span></span></div>
+      <div class="bt-row"><span class="bt-num">16<em>&times;</em>16</span><span class="bt-meta"><span class="t">Floor tom</span></span></div>
+    <p class="plate-grp">Snares &mdash; <a href="https://www.ludwig-drums.com/" target="_blank" rel="noopener">Ludwig</a></p>
+      <div class="bt-row"><span class="bt-num">6.5<em>&times;</em>14</span><span class="bt-meta"><span class="t">Black Beauty</span></span></div>
+      <div class="bt-row"><span class="bt-num">6.5<em>&times;</em>14</span><span class="bt-meta"><span class="t">Copperphonic</span></span></div>
+      <div class="bt-row"><span class="bt-num">6.5<em>&times;</em>14</span><span class="bt-meta"><span class="t">Hand-hammered bronze</span></span></div>
+      <div class="bt-row"><span class="bt-num">5<em>&times;</em>14</span><span class="bt-meta"><span class="t">Supraphonic</span></span></div>
+    <p class="plate-grp">Snare &mdash; <a href="https://www.dwdrums.com/" target="_blank" rel="noopener">DW</a></p>
+      <div class="bt-row"><span class="bt-num">6.5<em>&times;</em>14</span><span class="bt-meta"><span class="t">Nickel over brass</span></span></div>
+    <p class="plate-grp">Cymbals &mdash; <a href="https://zildjian.com/" target="_blank" rel="noopener">Zildjian</a> K Custom</p>
+      <div class="bt-row"><span class="bt-num">14&#8243;</span><span class="bt-meta"><span class="t">Hi-hats</span></span></div>
+      <div class="bt-row"><span class="bt-num">19&#8243;</span><span class="bt-meta"><span class="t">Trash crash</span><span class="s">Special Dry</span></span></div>
+      <div class="bt-row"><span class="bt-num">20&#8243;</span><span class="bt-meta"><span class="t">Dark crash</span></span></div>
+      <div class="bt-row"><span class="bt-num">21&#8243;</span><span class="bt-meta"><span class="t">Hybrid ride</span></span></div>
+      <div class="bt-row"><span class="bt-num">21&#8243;</span><span class="bt-meta"><span class="t">Crash ride</span></span></div>
+    <p class="plate-grp">Cymbals &mdash; <a href="https://dreamcymbals.com/" target="_blank" rel="noopener">Dream</a></p>
+      <div class="bt-row"><span class="bt-num">15&#8243;</span><span class="bt-meta"><span class="t">Energy hi-hats</span></span></div>
+      <div class="bt-row"><span class="bt-num">20&#8243;</span><span class="bt-meta"><span class="t">Bliss crash ride</span></span></div>
+      <div class="bt-row"><span class="bt-num">20&#8243;</span><span class="bt-meta"><span class="t">Bliss paper thin crash</span></span></div>
+      <div class="bt-row"><span class="bt-num">22&#8243;</span><span class="bt-meta"><span class="t">Energy crash ride</span></span></div>
+    <p class="plate-grp">Sticks &mdash; <a href="https://www.daddario.com/promark-find-your-stripes/renamed/" target="_blank" rel="noopener">Pro-Mark</a></p>
+      <div class="bt-row"><span class="bt-num">747B</span><span class="bt-meta"><span class="t">Forward</span></span></div>
+      <div class="bt-row"><span class="bt-num">5A</span><span class="bt-meta"><span class="t">Rebound</span></span></div>
   </div>
 </section>
 
