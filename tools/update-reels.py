@@ -36,6 +36,7 @@ import urllib.error
 import urllib.request
 
 HTML = "index.html"
+SEEN_FILE = "tools/seen-reels.txt"
 START = "<!-- REELS:START"
 END = "<!-- REELS:END -->"
 # DO NOT "modernise" this User-Agent. Instagram serves two different responses:
@@ -97,12 +98,61 @@ def current_codes(block):
     return re.findall(r"/reel/([A-Za-z0-9_-]+)/embed/", block)
 
 
+def read_seen():
+    """Every shortcode ever featured. Missing file is not an error (returns empty)."""
+    try:
+        with open(SEEN_FILE, encoding="utf-8") as fh:
+            return [l.strip() for l in fh
+                    if l.strip() and not l.lstrip().startswith("#")]
+    except FileNotFoundError:
+        return []
+
+
+def write_seen(codes):
+    seen = read_seen()
+    fresh = [c for c in codes if c not in seen]
+    if not fresh:
+        return
+    with open(SEEN_FILE, "a", encoding="utf-8") as fh:
+        for c in fresh:
+            fh.write(c + "\n")
+
+
+def merge(incoming, existing):
+    """Merge a profile feed into the page.
+
+    Instagram pins posts to the top of a profile regardless of age, so the feed
+    is NOT reliably newest-first and a naive replace keeps re-adding pinned
+    reels from months ago. The feed is also truncated (~12 items), so anything
+    below that window would get dropped for no reason.
+
+    So: add only shortcodes never featured before, keep everything already on
+    the page, and never bring back one that has already rotated off.
+    """
+    seen = set(read_seen())
+    fresh = [c for c in incoming if c not in seen]
+    retired = [c for c in incoming if c in seen and c not in existing]
+    keep = fresh + [c for c in existing if c not in fresh]
+    if retired:
+        print(f"ignored {len(retired)} already-featured (pinned or re-surfaced): "
+              f"{', '.join(retired)}")
+    # Deliberately NOT truncated to the limit here. Validation runs after this,
+    # and if an invalid shortcode were allowed to occupy a slot it would push a
+    # good reel off the end and then be dropped itself, silently shrinking the
+    # section. Truncation happens after validation, in main().
+    return fresh, keep
+
+
 def main():
     ap = argparse.ArgumentParser()
     src = ap.add_mutually_exclusive_group(required=True)
     src.add_argument("--shortcodes", help="comma/whitespace separated, newest first")
     src.add_argument("--from-file", help="file with one shortcode per line, newest first")
     ap.add_argument("--max", type=int, default=6, help="how many to keep (default 6)")
+    ap.add_argument("--merge", action="store_true",
+                    help="treat the incoming list as a feed to merge, not a replacement: "
+                         "add only never-before-featured reels, keep what is on the page, "
+                         "and never resurrect a retired one (see SEEN_FILE)")
     ap.add_argument("--commit", action="store_true", help="git commit the change")
     ap.add_argument("--push", action="store_true", help="git push after committing")
     ap.add_argument("--skip-validate", action="store_true", help="skip the reachability check")
@@ -131,7 +181,11 @@ def main():
 
     print(f"on page now : {len(existing)} -> {', '.join(existing) or '(none)'}")
     print(f"incoming    : {len(incoming)} -> {', '.join(incoming)}")
-    new = [c for c in incoming if c not in existing]
+
+    if args.merge:
+        new, incoming = merge(incoming, existing)
+    else:
+        new = [c for c in incoming if c not in existing]
     print(f"new         : {', '.join(new) if new else '(none)'}")
 
     if not args.skip_validate:
@@ -152,6 +206,7 @@ def main():
     dropped = [c for c in existing if c not in keep]
     print(f"\nwrote {len(keep)} reels; added {len([c for c in keep if c not in existing])}, "
           f"dropped {len(dropped)}{': ' + ', '.join(dropped) if dropped else ''}")
+    write_seen(keep)
 
     if args.commit:
         added = [c for c in keep if c not in existing]

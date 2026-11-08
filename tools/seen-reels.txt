@@ -1,0 +1,25 @@
+# Every reel shortcode this site has ever featured, one per line.
+# update-reels.py --merge consults this so a reel that has already had its
+# run and rotated off never comes back. Instagram pins posts to the top of a
+# profile regardless of age, so without this the weekly job keeps 'discovering'
+# pinned reels from 2026-08 and reporting them as new.
+# The script appends to this file automatically. Do not reorder; order is ignored.
+DYuj6RCxDPa
+DZ_akmdRZc2
+DZbT9jGp6Sf
+DanUnAqRA9z
+DbQngrrxX0c
+DbTiMLppbx3
+DbZgGy_xQ3_
+DbinHX4xXYA
+DcKSwIuRHya
+Dd2fVaSRn6M
+Dd7q5wQxrdK
+Ddkm9L3RFhQ
+DdnT0sBRFCU
+DdscsXQxOYs
+DdzwXesvExX
+Deamc4MRoT9
+Defv1ZyxIOC
+Des2idNxm9T
+DfPbsMFx6_-
